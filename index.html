@@ -68,9 +68,6 @@ header { position: sticky; top: 0; z-index: 30; background: color-mix(in srgb, v
 .index ol:hover li a:not(:hover) { color: var(--soft); }
 .index .t { font: 300 clamp(30px, 3.4vw, 46px)/1.1 var(--serif); }
 .index .yr { text-align: right; }
-.preview { position: fixed; z-index: 40; width: 340px; pointer-events: none; opacity: 0; transform: translate(-50%, -50%) scale(.94); transition: opacity .35s, transform .5s cubic-bezier(.2,.7,.1,1); }
-.preview.on { opacity: 1; transform: translate(-50%, -50%) scale(1); }
-.preview img { max-height: 52vh; width: auto; margin: 0 auto; box-shadow: 0 30px 60px -20px rgba(0,0,0,.35); }
 
 /* Projects */
 .project { padding-block: 0 170px; }
@@ -146,7 +143,6 @@ footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; g
   .index li a .what { display: none; }
   .info, .about-grid { grid-template-columns: 1fr; gap: 36px; }
   .further-grid { grid-template-columns: 1fr; gap: 36px; }
-  .preview { display: none; }
   .hero { padding-block: 80px 70px; }
   .project { padding-bottom: 120px; }
 }
@@ -197,10 +193,10 @@ try { const t = localStorage.getItem('theme'); if (t) document.documentElement.d
   <section class="index wrap" id="work">
     <div class="index-head"><span class="caps soft">Selected work</span><span class="caps soft">2023 to 2025</span></div>
     <ol id="index">
-      <li><a href="#scribe" data-img="images/scribe-dashboard.webp"><span class="caps soft">I</span><span class="t">Scribe</span><span class="what soft">Speech-to-text evaluation</span><span class="caps soft yr">Thesis</span></a></li>
-      <li><a href="#recipelens" data-img="images/recipelens-home.webp"><span class="caps soft">II</span><span class="t">RecipeLens</span><span class="what soft">Recipe scanning app</span><span class="caps soft yr">Mobile</span></a></li>
-      <li><a href="#salon" data-img="images/hairsalon-dashboard.webp"><span class="caps soft">III</span><span class="t">Salon System</span><span class="what soft">Business management</span><span class="caps soft yr">Client</span></a></li>
-      <li><a href="#motion" data-img="images/motion-pose.webp"><span class="caps soft">IV</span><span class="t">Motion to Animation</span><span class="what soft">Pose detection</span><span class="caps soft yr">Study</span></a></li>
+      <li><a href="#scribe"><span class="caps soft">I</span><span class="t">Scribe</span><span class="what soft">Speech-to-text evaluation</span><span class="caps soft yr">Thesis</span></a></li>
+      <li><a href="#recipelens"><span class="caps soft">II</span><span class="t">RecipeLens</span><span class="what soft">Recipe scanning app</span><span class="caps soft yr">Mobile</span></a></li>
+      <li><a href="#salon"><span class="caps soft">III</span><span class="t">Salon System</span><span class="what soft">Business management</span><span class="caps soft yr">Client</span></a></li>
+      <li><a href="#motion"><span class="caps soft">IV</span><span class="t">Motion to Animation</span><span class="what soft">Pose detection</span><span class="caps soft yr">Study</span></a></li>
     </ol>
   </section>
 
@@ -308,8 +304,6 @@ try { const t = localStorage.getItem('theme'); if (t) document.documentElement.d
 
 <footer><div class="wrap caps soft"><span>© 2026 Rrona Pajaziti</span><span>Designed and developed by Rrona Pajaziti</span></div></footer>
 
-<div class="preview" id="preview" aria-hidden="true"><img alt="" id="previewImg"></div>
-
 <script>
 // Fade and wipe sections in as they enter the viewport
 const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { threshold: .15 });
@@ -325,13 +319,6 @@ const label = () => mode.textContent = dark() ? 'Light' : 'Dark';
 label();
 mode.addEventListener('click', () => { root.dataset.theme = dark() ? 'light' : 'dark'; try { localStorage.setItem('theme', root.dataset.theme); } catch (e) {} label(); });
 
-// Index: a preview image follows the cursor over each title
-const pv = document.getElementById('preview'), pvi = document.getElementById('previewImg');
-document.querySelectorAll('#index a').forEach(a => {
-  a.addEventListener('mouseenter', () => { pvi.src = a.dataset.img; pv.classList.add('on'); });
-  a.addEventListener('mouseleave', () => pv.classList.remove('on'));
-  a.addEventListener('mousemove', e => { pv.style.left = e.clientX + 'px'; pv.style.top = e.clientY + 'px'; });
-});
 </script>
 </body>
 </html>
