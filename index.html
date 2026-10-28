@@ -1,252 +1,337 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Rrona Pajaziti, Software Developer</title>
-  <meta name="description" content="Rrona Pajaziti is a software developer building full-stack web and mobile applications with .NET, React, Django and Laravel.">
-  <meta name="author" content="Rrona Pajaziti">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
-  <script>
-    try {
-      const t = localStorage.getItem('theme');
-      if (t) document.documentElement.dataset.theme = t;
-    } catch (e) {}
-    document.documentElement.classList.add('js');
-  </script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rrona Pajaziti</title>
+<meta name="description" content="Rrona Pajaziti, software engineer. Full-stack web and mobile applications.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+/* Layout: gallery-like. Quiet monochrome, light serif display, wide margins, each project shown on its own plinth like a product photograph. */
+:root {
+  --bg: #f6f5f2;
+  --plinth: #e9e6e0;
+  --ink: #1d1c1a;
+  --soft: #6f6b64;
+  --hair: #d9d5cd;
+  --deep: #2b3a33;
+  --serif: Cormorant, 'Cormorant Garamond', Georgia, serif;
+  --sans: Jost, 'Futura', 'Helvetica Neue', Arial, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) { --bg: #121211; --plinth: #1c1c1a; --ink: #ebe8e2; --soft: #96918a; --hair: #2c2b28; --deep: #a9c2b4; color-scheme: dark; }
+}
+:root[data-theme="dark"] { --bg: #121211; --plinth: #1c1c1a; --ink: #ebe8e2; --soft: #96918a; --hair: #2c2b28; --deep: #a9c2b4; color-scheme: dark; }
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 300 17px/1.75 var(--sans); -webkit-font-smoothing: antialiased; transition: background .6s, color .6s; }
+a { color: inherit; text-decoration: none; }
+img { display: block; max-width: 100%; height: auto; }
+.wrap { max-width: 1320px; margin: 0 auto; padding-inline: max(24px, 5vw); }
+.caps { font: 400 11.5px/1.6 var(--sans); letter-spacing: .22em; text-transform: uppercase; }
+.soft { color: var(--soft); }
+
+/* Header */
+header { position: sticky; top: 0; z-index: 30; background: color-mix(in srgb, var(--bg) 82%, transparent); backdrop-filter: blur(10px); }
+.bar { display: flex; justify-content: space-between; align-items: center; height: 84px; }
+.mark { font: 400 24px var(--serif); letter-spacing: .02em; }
+.mark i { font-style: italic; font-weight: 300; }
+.bar nav { display: flex; gap: 44px; align-items: center; }
+.bar nav a, .bar nav button { position: relative; }
+.bar nav a::after { content: ''; position: absolute; left: 0; right: 100%; bottom: -4px; height: 1px; background: currentColor; transition: right .5s cubic-bezier(.6,0,.2,1); }
+.bar nav a:hover::after { right: 0; }
+.mode { background: none; border: 0; color: var(--soft); cursor: pointer; padding: 0; }
+.mode:hover { color: var(--ink); }
+
+/* Hero */
+.hero { padding-block: 120px 100px; }
+.hero h1 { font: 300 clamp(52px, 8.6vw, 136px)/.98 var(--serif); letter-spacing: -.02em; margin: 0; text-wrap: balance; }
+.hero h1 em { font-style: italic; }
+.hero h1 .ln { display: block; overflow: hidden; padding-bottom: .06em; }
+.hero h1 .ln span { display: block; animation: rise 1.6s cubic-bezier(.2,.7,.1,1) both; }
+.hero h1 .ln:nth-child(2) span { animation-delay: .12s; }
+.hero h1 .ln:nth-child(3) span { animation-delay: .24s; }
+@keyframes rise { from { transform: translateY(105%); } }
+.facts { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; margin-top: 96px; padding-top: 28px; border-top: 1px solid var(--hair); animation: fade 1.6s .6s both; }
+.facts p { margin: 10px 0 0; font-size: 16px; }
+@keyframes fade { from { opacity: 0; } }
+
+/* Index of work */
+.index { padding-block: 40px 140px; }
+.index-head { display: flex; justify-content: space-between; align-items: baseline; padding-bottom: 22px; border-bottom: 1px solid var(--hair); }
+.index ol { list-style: none; margin: 0; padding: 0; counter-reset: n; }
+.index li a { display: grid; grid-template-columns: 70px 1fr 1fr 120px; gap: 24px; align-items: baseline; padding: 30px 0; border-bottom: 1px solid var(--hair); transition: padding .6s cubic-bezier(.2,.7,.1,1), color .4s; }
+.index li a:hover { padding-left: 18px; }
+.index ol:hover li a:not(:hover) { color: var(--soft); }
+.index .t { font: 300 clamp(30px, 3.4vw, 46px)/1.1 var(--serif); }
+.index .yr { text-align: right; }
+.preview { position: fixed; z-index: 40; width: 340px; pointer-events: none; opacity: 0; transform: translate(-50%, -50%) scale(.94); transition: opacity .35s, transform .5s cubic-bezier(.2,.7,.1,1); }
+.preview.on { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+.preview img { max-height: 52vh; width: auto; margin: 0 auto; box-shadow: 0 30px 60px -20px rgba(0,0,0,.35); }
+
+/* Projects */
+.project { padding-block: 0 170px; }
+.plinth { background: var(--plinth); padding: clamp(28px, 7vw, 110px); overflow: hidden; display: grid; place-items: center; transition: background .6s; }
+.plinth .screen { width: 100%; max-width: 1000px; box-shadow: 0 50px 80px -40px rgba(20,18,15,.35), 0 0 0 1px rgba(0,0,0,.04); transform: scale(1.0); transition: transform 1.6s cubic-bezier(.2,.7,.1,1); }
+.project:hover .plinth .screen { transform: scale(1.015); }
+.plinth.phones { grid-template-columns: repeat(3, minmax(0, 260px)); gap: clamp(14px, 3vw, 44px); justify-content: center; align-items: start; }
+.plinth.phones img { border-radius: 30px; border: 7px solid #121211; box-shadow: 0 40px 70px -35px rgba(20,18,15,.45); transition: transform 1.6s cubic-bezier(.2,.7,.1,1); }
+.plinth.phones img:nth-child(2) { margin-top: 70px; }
+.project:hover .plinth.phones img:nth-child(1) { transform: translateY(-8px); }
+.project:hover .plinth.phones img:nth-child(3) { transform: translateY(-8px); }
+.plinth.photo { padding: 0; }
+.plinth.photo img { width: 100%; transition: transform 1.6s cubic-bezier(.2,.7,.1,1); }
+.project:hover .plinth.photo img { transform: scale(1.02); }
+.info { display: grid; grid-template-columns: 1fr 1.1fr; gap: 64px; margin-top: 48px; }
+.info h2 { font: 300 clamp(44px, 5.4vw, 80px)/1 var(--serif); margin: 0; letter-spacing: -.01em; }
+.info h2 em { font-style: italic; }
+.info .sub { margin-top: 16px; }
+.info p { margin: 0 0 24px; max-width: 58ch; }
+.spec { display: grid; grid-template-columns: auto 1fr; gap: 8px 28px; margin: 32px 0 0; padding-top: 24px; border-top: 1px solid var(--hair); }
+.spec dt { color: var(--soft); }
+.spec dd { margin: 0; font-size: 15px; }
+.link { display: inline-flex; gap: 12px; align-items: center; margin-top: 28px; }
+.link span { display: inline-block; transition: transform .5s cubic-bezier(.2,.7,.1,1); }
+.link:hover span { transform: translateX(8px); }
+
+/* Further work */
+.further { padding-block: 0 160px; }
+.further-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 48px; margin-top: 40px; }
+.further-grid article { border-top: 1px solid var(--ink); padding-top: 22px; }
+.further-grid h3 { font: 400 30px/1.15 var(--serif); margin: 12px 0 10px; }
+.further-grid p { margin: 0; color: var(--soft); font-size: 16px; }
+
+/* About */
+.about { padding-block: 140px; border-top: 1px solid var(--hair); }
+.about-grid { display: grid; grid-template-columns: 1fr 1.4fr; gap: 80px; }
+.lead { font: 300 clamp(30px, 3.4vw, 46px)/1.25 var(--serif); margin: 0; }
+.lead em { font-style: italic; color: var(--deep); }
+.cv { margin-top: 64px; display: grid; gap: 0; }
+.cv div { display: grid; grid-template-columns: 160px 1fr; gap: 24px; padding: 22px 0; border-top: 1px solid var(--hair); }
+.cv b { font-weight: 400; display: block; font-size: 18px; }
+.cv span { color: var(--soft); font-size: 15.5px; }
+.tools { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; margin-top: 80px; }
+.tools p { margin: 10px 0 0; font-size: 15.5px; }
+
+/* Contact */
+.contact { padding-block: 160px 120px; text-align: center; }
+.contact h2 { font: 300 clamp(56px, 10vw, 160px)/.95 var(--serif); margin: 26px 0 50px; letter-spacing: -.02em; }
+.contact h2 em { font-style: italic; }
+.email { font: 400 clamp(22px, 2.6vw, 32px) var(--serif); letter-spacing: .02em; border-bottom: 1px solid var(--hair); padding-bottom: 6px; transition: border-color .5s; user-select: all; }
+.email:hover { border-color: var(--ink); }
+.elsewhere { display: flex; justify-content: center; gap: 40px; margin-top: 56px; }
+footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 16px; padding-block: 32px 44px; border-top: 1px solid var(--hair); }
+
+/* Reveal: content is visible without JS; with JS it fades up gently */
+.rv { transition: opacity 1.4s cubic-bezier(.2,.7,.1,1), transform 1.4s cubic-bezier(.2,.7,.1,1); }
+.js .rv:not(.in) { opacity: 0; transform: translateY(36px); }
+.wipe { transition: clip-path 1.8s cubic-bezier(.6,0,.1,1); }
+.js .wipe:not(.in) { clip-path: inset(100% 0 0 0); }
+.js .wipe.in { clip-path: inset(0 0 0 0); }
+:focus-visible { outline: 1px solid var(--ink); outline-offset: 6px; }
+@media (prefers-reduced-motion: reduce) {
+  *, *::after { animation: none !important; transition: none !important; }
+  .js .rv:not(.in) { opacity: 1; transform: none; }
+  .js .wipe:not(.in) { clip-path: none; }
+}
+
+@media (max-width: 900px) {
+  .bar nav { gap: 26px; }
+  .bar nav a[href="#about"] { display: none; }
+  .facts, .tools { grid-template-columns: 1fr 1fr; }
+  .index li a { grid-template-columns: 44px 1fr 70px; }
+  .index li a .what { display: none; }
+  .info, .about-grid { grid-template-columns: 1fr; gap: 36px; }
+  .further-grid { grid-template-columns: 1fr; gap: 36px; }
+  .preview { display: none; }
+  .hero { padding-block: 80px 70px; }
+  .project { padding-bottom: 120px; }
+}
+@media (max-width: 520px) {
+  .bar nav a[href="#work"] { display: none; }
+  .facts, .tools { grid-template-columns: 1fr; gap: 24px; }
+  .facts { margin-top: 64px; }
+  .cv div { grid-template-columns: 1fr; gap: 4px; }
+  .plinth.phones { gap: 10px; }
+  .plinth.phones img { border-width: 4px; border-radius: 18px; }
+  .plinth.phones img:nth-child(2) { margin-top: 36px; }
+  .elsewhere { gap: 28px; }
+}
+</style>
+<script>
+document.documentElement.classList.add('js');
+try { const t = localStorage.getItem('theme'); if (t) document.documentElement.dataset.theme = t; } catch (e) {}
+</script>
 </head>
 <body>
-  <header class="top">
-    <div class="wrap top-inner">
-      <a href="#" class="name">Rrona Pajaziti</a>
-      <nav>
-        <a href="#work">Work</a>
-        <a href="#about">About</a>
-        <a href="#contact">Contact</a>
-        <button class="theme" id="themeBtn" type="button">Dark</button>
-      </nav>
+<header>
+  <div class="wrap bar">
+    <a class="mark" href="#">Rrona <i>Pajaziti</i></a>
+    <nav class="caps">
+      <a href="#work">Work</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+      <button class="mode caps" id="mode" type="button">Dark</button>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero wrap">
+    <h1>
+      <span class="ln"><span>Software, built</span></span>
+      <span class="ln"><span><em>with care</em> from the</span></span>
+      <span class="ln"><span>database up.</span></span>
+    </h1>
+    <div class="facts">
+      <div><span class="caps soft">Currently</span><p>Software Engineer</p></div>
+      <div><span class="caps soft">Focus</span><p>Full-stack web and mobile</p></div>
+      <div><span class="caps soft">Education</span><p>BSc Computer Science, UBT</p></div>
+      <div><span class="caps soft">Contact</span><p><a href="mailto:rrona2004@gmail.com">rrona2004@gmail.com</a></p></div>
     </div>
-  </header>
+  </section>
 
-  <main>
-    <section class="hero wrap">
-      <p class="kicker reveal">Software developer</p>
-      <h1 class="reveal">I build full-stack web and mobile apps, from the database to the last pixel.</h1>
-      <div class="hero-foot reveal">
-        <p>Currently working as a Software Engineer. I like turning messy real-world problems, like a salon's bookings or a stack of handwritten recipes, into software people actually enjoy using.</p>
-        <ul class="hero-links">
-          <li><a href="mailto:rrona2004@gmail.com">Email</a></li>
-          <li><a href="https://github.com/rronapajaziti" target="_blank" rel="noopener">GitHub</a></li>
-          <li><a href="https://www.linkedin.com/in/rrona-pajaziti-1627b425a" target="_blank" rel="noopener">LinkedIn</a></li>
-        </ul>
+  <section class="index wrap" id="work">
+    <div class="index-head"><span class="caps soft">Selected work</span><span class="caps soft">2023 – 2025</span></div>
+    <ol id="index">
+      <li><a href="#scribe" data-img="images/scribe-dashboard.webp"><span class="caps soft">I</span><span class="t">Scribe</span><span class="what soft">Speech-to-text evaluation</span><span class="caps soft yr">Thesis</span></a></li>
+      <li><a href="#recipelens" data-img="images/recipelens-home.webp"><span class="caps soft">II</span><span class="t">RecipeLens</span><span class="what soft">Recipe scanning app</span><span class="caps soft yr">Mobile</span></a></li>
+      <li><a href="#salon" data-img="images/hairsalon-dashboard.webp"><span class="caps soft">III</span><span class="t">Salon System</span><span class="what soft">Business management</span><span class="caps soft yr">Client</span></a></li>
+      <li><a href="#motion" data-img="images/motion-pose.webp"><span class="caps soft">IV</span><span class="t">Motion to Animation</span><span class="what soft">Pose detection</span><span class="caps soft yr">Study</span></a></li>
+    </ol>
+  </section>
+
+  <article class="project wrap" id="scribe">
+    <div class="plinth wipe"><img class="screen" src="images/scribe-dashboard.webp" alt="Scribe dashboard comparing transcription accuracy across models and languages" width="1440" height="900"></div>
+    <div class="info">
+      <div class="rv">
+        <h2>Scribe</h2>
+        <p class="caps soft sub">Bachelor's thesis · 2025</p>
       </div>
-    </section>
-
-    <section id="work" class="work">
-      <div class="wrap">
-        <h2 class="section-label">Selected work</h2>
+      <div class="rv">
+        <p>A platform for testing how well machines understand speech. Audio is transcribed by Google Cloud Speech-to-Text or OpenAI Whisper, then scored against a reference with standard error metrics: WER, CER, MER and WIL.</p>
+        <p>It supports Albanian, English, German and Turkish, and its dashboard compares accuracy across language, dialect, age and gender.</p>
+        <dl class="spec"><dt class="caps">Front end</dt><dd>Next.js, TypeScript, Tailwind</dd><dt class="caps">Back end</dt><dd>Django REST, PostgreSQL, Docker</dd><dt class="caps">Models</dt><dd>Whisper, Google Cloud Speech</dd></dl>
+        <a class="link caps" href="https://github.com/rronapajaziti/Speech-to-Text-application" target="_blank" rel="noopener">View source <span>→</span></a>
       </div>
+    </div>
+  </article>
 
-      <!-- Scribe -->
-      <article class="project wrap">
-        <div class="project-text reveal">
-          <span class="idx">01</span>
-          <h3>Scribe</h3>
-          <p class="sub">Speech-to-text evaluation platform · Bachelor's thesis</p>
-          <p>Upload an audio recording, transcribe it with Google Cloud Speech-to-Text or OpenAI Whisper, and measure how accurate the result is with standard metrics (WER, CER, MER, WIL). It works with Albanian, English, German and Turkish, and the dashboard compares accuracy across languages, dialects, age and gender.</p>
-          <p class="stack">Next.js · TypeScript · Django REST · PostgreSQL · Whisper · Docker</p>
-          <a class="more" href="https://github.com/rronapajaziti/Speech-to-Text-application" target="_blank" rel="noopener">Source on GitHub</a>
-        </div>
-        <figure class="shot reveal">
-          <div class="switch" role="tablist" aria-label="Scribe screens">
-            <button class="on" data-show="0" type="button">Dashboard</button>
-            <button data-show="1" type="button">Evaluation</button>
-          </div>
-          <div class="frame stack-imgs" data-switch>
-            <img class="on" src="images/scribe-dashboard.webp" alt="Scribe dashboard with workflow status, word error rate ranges and per-language model comparison" width="1440" height="900" loading="lazy">
-            <img src="images/scribe-evaluation.webp" alt="Scribe audio evaluation screen with upload form and reference text" width="1440" height="900" loading="lazy">
-          </div>
-        </figure>
-      </article>
-
-      <!-- RecipeLens -->
-      <article class="project wrap">
-        <div class="project-text reveal">
-          <span class="idx">02</span>
-          <h3>RecipeLens</h3>
-          <p class="sub">Mobile app · iOS, Android and web</p>
-          <p>Take a photo of a cookbook page or a handwritten recipe card and RecipeLens reads it for you. OCR and a custom parser pre-fill the ingredients and steps, and a short review wizard lets you fix anything before saving. Recipes are organised by category with favourites, search, English and Albanian, and a separate admin panel.</p>
-          <p class="stack">React Native · Expo · Node.js · Express · MongoDB · OCR</p>
-        </div>
-        <figure class="phones reveal">
-          <img src="images/recipelens-welcome.webp" alt="RecipeLens onboarding screen showing a cookbook photo inside scan brackets" width="600" height="1299" loading="lazy">
-          <img src="images/recipelens-home.webp" alt="RecipeLens home screen with recently added recipes" width="600" height="1299" loading="lazy">
-          <img src="images/recipelens-mine.webp" alt="RecipeLens My Recipes grid filtered by category" width="600" height="1299" loading="lazy">
-        </figure>
-      </article>
-
-      <!-- Hair salon -->
-      <article class="project wrap">
-        <div class="project-text reveal">
-          <span class="idx">03</span>
-          <h3>Hair Salon Management System</h3>
-          <p class="sub">Freelance · built for a working salon</p>
-          <p>The whole salon runs on it: appointments and a calendar, staff and services, client history, discounts, and daily and monthly expenses. Owners get a dashboard with earnings, weekly bookings and their most loyal clients, and each role only sees what it should.</p>
-          <p class="stack">React · Tailwind · ASP.NET Core · MSSQL · JWT auth</p>
-        </div>
-        <figure class="shot reveal">
-          <div class="frame">
-            <img src="images/hairsalon-dashboard.webp" alt="Hair salon dashboard with staff, earnings and appointment charts" width="1440" height="900" loading="lazy">
-          </div>
-          <figcaption>Shown with sample data.</figcaption>
-        </figure>
-      </article>
-
-      <!-- Motion -->
-      <article class="project wrap">
-        <div class="project-text reveal">
-          <span class="idx">04</span>
-          <h3>Motion to Animation</h3>
-          <p class="sub">Computer vision experiment</p>
-          <p>The first step towards driving an animated character with your own body. The script finds 33 pose landmarks in a photo with MediaPipe and draws the skeleton with OpenCV. Drag across the image to compare.</p>
-          <p class="stack">Python · MediaPipe · OpenCV</p>
-        </div>
-        <figure class="shot reveal">
-          <div class="compare" id="compare" style="--pos: 50%">
-            <img src="images/motion-original.webp" alt="Original photo of a person sitting on a cobblestone street" width="960" height="640" loading="lazy">
-            <img class="after" src="images/motion-pose.webp" alt="Same photo with the detected pose skeleton drawn over the body" width="960" height="640" loading="lazy">
-            <span class="handle" aria-hidden="true"></span>
-            <input type="range" min="0" max="100" value="50" aria-label="Compare original and detected pose">
-          </div>
-        </figure>
-      </article>
-
-      <div class="wrap">
-        <h2 class="section-label small">More projects</h2>
-        <ul class="more-list">
-          <li class="reveal">
-            <img src="images/travel-home.webp" alt="Coral Travel Agency homepage" width="1440" height="900" loading="lazy">
-            <div>
-              <h4>Coral Travel Agency</h4>
-              <p>University project: a travel booking site with flights, hotels and offers, sign-up and login, reservations, and an admin dashboard to manage users, offers and bookings.</p>
-              <p class="stack">PHP · MySQL · JavaScript</p>
-            </div>
-            <a class="more" href="https://github.com/rronapajaziti/Web-design-Project" target="_blank" rel="noopener">Source</a>
-          </li>
-          <li class="reveal">
-            <span class="ph" aria-hidden="true">LIB</span>
-            <div>
-              <h4>Online Library</h4>
-              <p>University project: React pages on top of a .NET API. I designed the database and built the full set of create, read, update and delete operations.</p>
-              <p class="stack">React · .NET · MSSQL</p>
-            </div>
-          </li>
-          <li class="reveal">
-            <span class="ph" aria-hidden="true">MVC</span>
-            <div>
-              <h4>Laravel Web Application</h4>
-              <p>University project: a Laravel MVC app with routing, controllers, authentication, validation and reusable Blade templates.</p>
-              <p class="stack">Laravel · PHP · MSSQL</p>
-            </div>
-          </li>
-        </ul>
+  <article class="project wrap" id="recipelens">
+    <div class="plinth phones wipe">
+      <img src="images/recipelens-welcome.webp" alt="RecipeLens onboarding" width="600" height="1299">
+      <img src="images/recipelens-home.webp" alt="RecipeLens home screen" width="600" height="1299">
+      <img src="images/recipelens-mine.webp" alt="RecipeLens recipe collection" width="600" height="1299">
+    </div>
+    <div class="info">
+      <div class="rv">
+        <h2>RecipeLens</h2>
+        <p class="caps soft sub">Mobile application · 2025</p>
       </div>
-    </section>
+      <div class="rv">
+        <p>A home for the recipes that live on paper. Photograph a cookbook page or a handwritten card and the app reads it, filling in ingredients, steps and timings for a quick review before saving.</p>
+        <p>Recipes are sorted into categories with favourites and search, in English and Albanian, with a separate admin panel.</p>
+        <dl class="spec"><dt class="caps">App</dt><dd>React Native, Expo</dd><dt class="caps">Server</dt><dd>Node.js, Express, MongoDB</dd><dt class="caps">Reading</dt><dd>OCR with a custom recipe parser</dd></dl>
+      </div>
+    </div>
+  </article>
 
-    <section id="about" class="about wrap">
-      <h2 class="section-label">About</h2>
+  <article class="project wrap" id="salon">
+    <div class="plinth wipe"><img class="screen" src="images/hairsalon-dashboard.webp" alt="Salon dashboard with earnings, weekly appointments and top clients" width="1440" height="900"></div>
+    <div class="info">
+      <div class="rv">
+        <h2>Salon System</h2>
+        <p class="caps soft sub">Client project · in daily use</p>
+      </div>
+      <div class="rv">
+        <p>The software a hair salon runs on: appointments and calendar, staff and services, client history, discounts, and daily and monthly expenses.</p>
+        <p>Owners see earnings and booking trends at a glance, and every role sees only what it needs.</p>
+        <dl class="spec"><dt class="caps">Front end</dt><dd>React, Tailwind</dd><dt class="caps">Back end</dt><dd>ASP.NET Core, MSSQL, JWT</dd><dt class="caps">Note</dt><dd>Shown with sample data</dd></dl>
+      </div>
+    </div>
+  </article>
+
+  <article class="project wrap" id="motion">
+    <div class="plinth photo wipe"><img src="images/motion-pose.webp" alt="A photo with the detected body pose drawn over it" width="960" height="640"></div>
+    <div class="info">
+      <div class="rv">
+        <h2>Motion to <em>Animation</em></h2>
+        <p class="caps soft sub">Study · computer vision</p>
+      </div>
+      <div class="rv">
+        <p>The first step towards animating a character with real human movement. The script locates 33 landmarks on the body in a single photograph and draws the skeleton they form.</p>
+        <dl class="spec"><dt class="caps">Built with</dt><dd>Python, MediaPipe, OpenCV</dd></dl>
+      </div>
+    </div>
+  </article>
+
+  <section class="further wrap">
+    <span class="caps soft">Further work</span>
+    <div class="further-grid">
+      <article class="rv"><span class="caps soft">PHP · MySQL</span><h3>Coral Travel Agency</h3><p>Flights, hotels and offers with reservations and an admin dashboard. <a class="link caps" style="margin-top:12px" href="https://github.com/rronapajaziti/Web-design-Project" target="_blank" rel="noopener">Source <span>→</span></a></p></article>
+      <article class="rv"><span class="caps soft">React · .NET · MSSQL</span><h3>Online Library</h3><p>A React front end on a .NET API, with the database designed from scratch.</p></article>
+      <article class="rv"><span class="caps soft">Laravel · PHP</span><h3>Laravel Application</h3><p>An MVC application with authentication, validation and Blade templates.</p></article>
+    </div>
+  </section>
+
+  <section class="about" id="about">
+    <div class="wrap">
       <div class="about-grid">
-        <div class="reveal">
-          <h3 class="col-title">Experience</h3>
-          <dl class="cv">
-            <dt>2025 – now</dt>
-            <dd><strong>Software Engineer</strong>
-              <span>I design, build and maintain applications, write and integrate REST APIs, review code, fix production issues and refactor legacy code so it is easier to work with.</span></dd>
-            <dt>2022 – 2025</dt>
-            <dd><strong>BSc Computer Science &amp; Engineering</strong>
-              <span>University of Business and Technology, Prishtinë. Software engineering, algorithms, databases, web development and cloud computing.</span></dd>
-          </dl>
-        </div>
-        <div class="reveal">
-          <h3 class="col-title">Tools I use</h3>
-          <dl class="cv skills">
-            <dt>Languages</dt><dd>C#, JavaScript, TypeScript, Python, PHP, Java, SQL</dd>
-            <dt>Frameworks</dt><dd>.NET, React, Next.js, React Native, Django, Flask, Laravel, Express</dd>
-            <dt>Data</dt><dd>MSSQL, MySQL, PostgreSQL, MongoDB</dd>
-            <dt>Workflow</dt><dd>Git, Docker, Jira, Trello, Visual Studio, VS Code</dd>
-          </dl>
+        <span class="caps soft rv">About</span>
+        <div>
+          <p class="lead rv">I'm Rrona, a software engineer who enjoys the whole of a product: the <em>structure</em> no one sees and the <em>details</em> everyone does.</p>
+          <div class="cv rv">
+            <div><span class="caps soft">2025 – Present</span><p style="margin:0"><b>Software Engineer</b><span>Designing and maintaining applications, building REST APIs, reviewing code and refining legacy systems.</span></p></div>
+            <div><span class="caps soft">2022 – 2025</span><p style="margin:0"><b>BSc Computer Science &amp; Engineering</b><span>University of Business and Technology, Prishtinë</span></p></div>
+          </div>
         </div>
       </div>
-    </section>
+      <div class="tools rv">
+        <div><span class="caps soft">Languages</span><p>C#, JavaScript, TypeScript, Python, PHP, SQL</p></div>
+        <div><span class="caps soft">Frameworks</span><p>.NET, React, Next.js, React Native, Django, Laravel</p></div>
+        <div><span class="caps soft">Data</span><p>MSSQL, MySQL, PostgreSQL, MongoDB</p></div>
+        <div><span class="caps soft">Practice</span><p>Git, Docker, testing, code review</p></div>
+      </div>
+    </div>
+  </section>
 
-    <section id="contact" class="contact wrap">
-      <h2 class="section-label">Contact</h2>
-      <p class="reveal">Have a project or a role in mind?</p>
-      <a class="mail reveal" href="mailto:rrona2004@gmail.com">rrona2004@gmail.com</a>
-    </section>
-  </main>
+  <section class="contact wrap" id="contact">
+    <span class="caps soft">Contact</span>
+    <h2 class="rv">Let's work<br><em>together.</em></h2>
+    <a class="email" href="mailto:rrona2004@gmail.com">rrona2004@gmail.com</a>
+    <div class="elsewhere caps"><a href="https://github.com/rronapajaziti" target="_blank" rel="noopener">GitHub</a><a href="https://www.linkedin.com/in/rrona-pajaziti-1627b425a" target="_blank" rel="noopener">LinkedIn</a></div>
+  </section>
+</main>
 
-  <footer class="wrap foot">
-    <span>© <span id="year">2026</span> Rrona Pajaziti</span>
-    <span>Designed and built by Rrona Pajaziti</span>
-  </footer>
+<footer><div class="wrap caps soft"><span>© 2026 Rrona Pajaziti</span><span>Designed and developed by Rrona Pajaziti</span></div></footer>
 
-  <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
+<div class="preview" id="preview" aria-hidden="true"><img alt="" id="previewImg"></div>
 
-    // Theme toggle
-    const root = document.documentElement;
-    const themeBtn = document.getElementById('themeBtn');
-    const isDark = () => root.dataset.theme
-      ? root.dataset.theme === 'dark'
-      : matchMedia('(prefers-color-scheme: dark)').matches;
-    const label = () => { themeBtn.textContent = isDark() ? 'Light' : 'Dark'; };
-    label();
-    themeBtn.addEventListener('click', () => {
-      root.dataset.theme = isDark() ? 'light' : 'dark';
-      try { localStorage.setItem('theme', root.dataset.theme); } catch (e) {}
-      label();
-    });
+<script>
+// Fade and wipe sections in as they enter the viewport
+const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { threshold: .15 });
+document.querySelectorAll('.rv').forEach(el => io.observe(el));
+// A fully clipped element never counts as visible, so start each wipe from its project section
+const wo = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.querySelector('.wipe')?.classList.add('in'); wo.unobserve(e.target); } }), { threshold: .1 });
+document.querySelectorAll('.project').forEach(el => wo.observe(el));
 
-    // Fade sections in as they scroll into view
-    const io = new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
-      });
-    }, { threshold: 0.15 });
-    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+// Theme toggle
+const root = document.documentElement, mode = document.getElementById('mode');
+const dark = () => root.dataset.theme ? root.dataset.theme === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+const label = () => mode.textContent = dark() ? 'Light' : 'Dark';
+label();
+mode.addEventListener('click', () => { root.dataset.theme = dark() ? 'light' : 'dark'; try { localStorage.setItem('theme', root.dataset.theme); } catch (e) {} label(); });
 
-    // Scribe screen switcher
-    document.querySelectorAll('.switch').forEach(sw => {
-      const imgs = sw.parentElement.querySelectorAll('[data-switch] img');
-      sw.querySelectorAll('button').forEach(btn => btn.addEventListener('click', () => {
-        sw.querySelectorAll('button').forEach(b => b.classList.toggle('on', b === btn));
-        imgs.forEach((img, i) => img.classList.toggle('on', i === +btn.dataset.show));
-      }));
-    });
-
-    // Before/after pose comparison: sweeps once when it appears, then follows the slider
-    const cmp = document.getElementById('compare');
-    const range = cmp.querySelector('input');
-    range.addEventListener('input', () => cmp.style.setProperty('--pos', range.value + '%'));
-    if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      new IntersectionObserver((entries, obs) => {
-        if (!entries[0].isIntersecting) return;
-        obs.disconnect();
-        const start = performance.now();
-        const step = now => {
-          const t = Math.min(1, (now - start) / 2200);
-          const v = 50 + 40 * Math.sin(t * Math.PI * 2) * (1 - t);
-          cmp.style.setProperty('--pos', v + '%');
-          range.value = v;
-          if (t < 1) requestAnimationFrame(step);
-        };
-        requestAnimationFrame(step);
-      }, { threshold: 0.6 }).observe(cmp);
-    }
-  </script>
+// Index: a preview image follows the cursor over each title
+const pv = document.getElementById('preview'), pvi = document.getElementById('previewImg');
+document.querySelectorAll('#index a').forEach(a => {
+  a.addEventListener('mouseenter', () => { pvi.src = a.dataset.img; pv.classList.add('on'); });
+  a.addEventListener('mouseleave', () => pv.classList.remove('on'));
+  a.addEventListener('mousemove', e => { pv.style.left = e.clientX + 'px'; pv.style.top = e.clientY + 'px'; });
+});
+</script>
 </body>
 </html>
