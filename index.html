@@ -3,27 +3,25 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#121211">
 <title>Rrona Pajaziti</title>
 <meta name="description" content="Rrona Pajaziti, software engineer. Full-stack web and mobile applications.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-/* Layout: gallery-like. Quiet monochrome, light serif display, wide margins, each project shown on its own plinth like a product photograph. */
+/* Layout: gallery-like. Dark monochrome, light serif display, wide margins, each project shown on its own plinth like a product photograph. */
 :root {
-  --bg: #f6f5f2;
-  --plinth: #e9e6e0;
-  --ink: #1d1c1a;
-  --soft: #6f6b64;
-  --hair: #d9d5cd;
-  --deep: #2b3a33;
+  --bg: #121211;
+  --plinth: #1c1c1a;
+  --ink: #ebe8e2;
+  --soft: #96918a;
+  --hair: #2c2b28;
+  --deep: #a9c2b4;
+  color-scheme: dark;
   --serif: Cormorant, 'Cormorant Garamond', Georgia, serif;
   --sans: Jost, 'Futura', 'Helvetica Neue', Arial, sans-serif;
 }
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) { --bg: #121211; --plinth: #1c1c1a; --ink: #ebe8e2; --soft: #96918a; --hair: #2c2b28; --deep: #a9c2b4; color-scheme: dark; }
-}
-:root[data-theme="dark"] { --bg: #121211; --plinth: #1c1c1a; --ink: #ebe8e2; --soft: #96918a; --hair: #2c2b28; --deep: #a9c2b4; color-scheme: dark; }
 
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
@@ -43,8 +41,6 @@ header { position: sticky; top: 0; z-index: 30; background: color-mix(in srgb, v
 .bar nav a, .bar nav button { position: relative; }
 .bar nav a::after { content: ''; position: absolute; left: 0; right: 100%; bottom: -4px; height: 1px; background: currentColor; transition: right .5s cubic-bezier(.6,0,.2,1); }
 .bar nav a:hover::after { right: 0; }
-.mode { background: none; border: 0; color: var(--soft); cursor: pointer; padding: 0; }
-.mode:hover { color: var(--ink); }
 
 /* Hero */
 .hero { padding-block: 120px 100px; }
@@ -159,7 +155,6 @@ footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; g
 </style>
 <script>
 document.documentElement.classList.add('js');
-try { const t = localStorage.getItem('theme'); if (t) document.documentElement.dataset.theme = t; } catch (e) {}
 </script>
 </head>
 <body>
@@ -170,7 +165,6 @@ try { const t = localStorage.getItem('theme'); if (t) document.documentElement.d
       <a href="#work">Work</a>
       <a href="#about">About</a>
       <a href="#contact">Contact</a>
-      <button class="mode caps" id="mode" type="button">Dark</button>
     </nav>
   </div>
 </header>
@@ -311,13 +305,6 @@ document.querySelectorAll('.rv').forEach(el => io.observe(el));
 // A fully clipped element never counts as visible, so start each wipe from its project section
 const wo = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.querySelector('.wipe')?.classList.add('in'); wo.unobserve(e.target); } }), { threshold: .1 });
 document.querySelectorAll('.project').forEach(el => wo.observe(el));
-
-// Theme toggle
-const root = document.documentElement, mode = document.getElementById('mode');
-const dark = () => root.dataset.theme ? root.dataset.theme === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
-const label = () => mode.textContent = dark() ? 'Light' : 'Dark';
-label();
-mode.addEventListener('click', () => { root.dataset.theme = dark() ? 'light' : 'dark'; try { localStorage.setItem('theme', root.dataset.theme); } catch (e) {} label(); });
 
 </script>
 </body>
